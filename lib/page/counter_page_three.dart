@@ -1,42 +1,24 @@
+import 'package:counter_app/common_widget/elevated_button_widget.dart';
+import 'package:counter_app/menu_mobx/bottom_menu_mobx.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
 
 class CounterPageThree extends StatefulWidget {
-   CounterPageThree({Key? key}) : super(key: key);
+  const CounterPageThree({Key? key, required this.bottomMenuMobx})
+      : super(key: key);
+  final BottomMenuMobx bottomMenuMobx;
 
   @override
   _CounterPageThreeState createState() => _CounterPageThreeState();
 }
 
 class _CounterPageThreeState extends State<CounterPageThree> {
-   final DatabaseReference _databaseReference =
-      FirebaseDatabase.instance.reference().child("page3");
-  int _currentValue = 0;
-  String key = "";
-
-  _CounterPageThreeState() {
-    _databaseReference.onChildAdded.listen(_readChange);
-    _databaseReference.onChildChanged.listen(_readChange);
-  }
-
-  _readChange(DatabaseEvent event) {
-    var datasnapShot = event.snapshot;
-    Map<dynamic, dynamic>? map = datasnapShot.value as Map?;
-    key = map!["key"] ?? "";
-    if(mounted) {
-      setState(() {
-        _currentValue = map["value"] ?? 0;
-      });
-    }
-  }
-  _incrementCounter() {
-    //  _currentValue = _currentValue + 1;
-    if (key == "") {
-      key = _databaseReference.push().key.toString();
-    }
-    var map = {"key": key, "value": _currentValue + 1};
-    print(map);
-    _databaseReference.child(key).set(map);
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    widget.bottomMenuMobx.listenToFirebaseValues();
   }
 
   @override
@@ -46,12 +28,10 @@ class _CounterPageThreeState extends State<CounterPageThree> {
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Text("Counter $_currentValue"),
-          ElevatedButton(
-              onPressed: () {
-                _incrementCounter();
-              },
-              child: const Text("Increment me!"))
+          Observer(builder: (context) {
+            return Text("Counter ${widget.bottomMenuMobx.counter3}");
+          }),
+          ElevatedButtonWidget(bottomMenuMobx: widget.bottomMenuMobx)
         ],
       ),
     );

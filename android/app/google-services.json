@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "420500964440",
+    "firebase_url": "https://fir-demo-b6c1a.firebaseio.com",
+    "project_id": "fir-demo-b6c1a",
+    "storage_bucket": "fir-demo-b6c1a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:420500964440:android:b0c45bb6ab05046ffbb62d",
+        "android_client_info": {
+          "package_name": "com.agendaboa.counterapp.counter_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "420500964440-q0op5u8afh3cvi8q8ashk0qaebgtk9n5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCiBRJ80YxhJjlcogTIavKxJ-xR1frCIyg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "420500964440-q0op5u8afh3cvi8q8ashk0qaebgtk9n5.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
